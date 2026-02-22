@@ -1,0 +1,49 @@
+# DPRNN Configuration
+model:
+  n_src: 2
+  n_filters: 64
+  kernel_size: 16
+  stride: 8
+  n_repeats: 6
+  n_blocks: 3
+  rnn_hidden: 128
+  norm_type: "gLN"
+  mask_act: "relu"
+
+# Loss function configuration
+loss:
+  si_sdr_weight: 1.0
+  mse_weight: 0.1
+  spectral_weight: 0.1
+  perceptual_weight: 0.05
+
+# Optimizer configuration
+optimizer:
+  lr: 0.001
+  weight_decay: 0.0001
+
+# Learning rate scheduler
+scheduler:
+  factor: 0.5
+  patience: 5
+
+# Training configuration
+max_epochs: 100
+patience: 10
+grad_clip: 5.0
+batch_size: 16
+num_workers: 4
+
+# Data configuration
+data:
+  sample_rate: 16000
+  segment_length: 32000  # 2 seconds at 16kHz
+  n_sources: 2
+  augment: true
+
+# Paths
+save_dir: "checkpoints/dprnn"
+log_dir: "logs/dprnn"
+
+# Device
+device: "auto"  # auto, cuda, mps, cpu
